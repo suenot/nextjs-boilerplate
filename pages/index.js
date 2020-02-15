@@ -8,14 +8,14 @@ import Box from '@material-ui/core/Box'
 import MuiLink from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import ProTip from './src/ProTip'
-import Link from './src/Link'
+import Link from '~/components/Link'
 
-import { inject, observer } from 'mobx-react'
+
 import { Context } from './test/context'
 
 // i18next
-import { i18n, withTranslation } from '../i18n';
-
+import Wrapper from '../i18n/Wrapper'
+import { i18n } from '../i18n/';
 
 function Copyright () {
 
@@ -75,20 +75,16 @@ function About ({ globalStore, t, currentLanguage }) {
   )
 }
 
-// export default About
+// About.getInitialProps = async ({ req }) => {
+//   return {
+//     namespacesRequired: ['common', 'test'],
+//     currentLanguage: req ? req.language : i18n.language
+//   };
+// };
 
-About.getInitialProps = async ({ req }) => {
-  return {
-    namespacesRequired: ['common', 'test'],
-    currentLanguage: req ? req.language : i18n.language
-  };
-};
+// About.propTypes = {
+//   t: PropTypes.func.isRequired
+// };
 
-About.propTypes = {
-  t: PropTypes.func.isRequired
-};
 
-let OUT = About
-OUT = inject('globalStore')(observer(OUT))
-OUT = withTranslation('common')(OUT)
-export default OUT
+export default Wrapper(About)
