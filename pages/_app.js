@@ -5,7 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 
 // i18next
-import { appWithTranslation } from '../i18n/';
+import {appWithTranslation} from '~/init/i18n'
 
 // Styles provider
 import theme from '../styles/theme'

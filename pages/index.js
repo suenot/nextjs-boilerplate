@@ -10,12 +10,12 @@ import Button from '@material-ui/core/Button'
 import ProTip from './src/ProTip'
 import Link from '~/components/Link'
 
-
 import { Context } from './test/context'
 
 // i18next
-import Wrapper from '../i18n/Wrapper'
-import { i18n } from '../i18n/';
+import {i18n} from '~/init/i18n'
+import Wrapper from '~/init/Wrapper'
+
 
 function Copyright () {
 

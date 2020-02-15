@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { i18n, withTranslation } from './';
+import { i18n, withTranslation } from './i18n';
 import { inject, observer } from 'mobx-react'
 
 
