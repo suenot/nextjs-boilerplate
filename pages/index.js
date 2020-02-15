@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types';
 
 
+import { makeStyles } from '@material-ui/core/styles';
+
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -32,12 +34,29 @@ function Copyright () {
   )
 }
 
+const useStyles = makeStyles(theme => ({
+
+	demo: {
+		fontSize: 10,
+		padding: theme.spacing(3),
+		border: `solid 1px rgba(255,255,255, .1)`,
+		textAlign: 'center',
+	},
+
+}));
+
 function About ({ globalStore, t, currentLanguage }) {
 
+	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
 
   return (
     <Container maxWidth='sm'>
+
+			<div className={classes.demo}>
+				Styled container
+			</div>
+
       <Box my={4}>
         <Typography variant='h4' component='h1' gutterBottom>
           Next.js {currentLanguage}
