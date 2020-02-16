@@ -12,11 +12,14 @@ import Button from '@material-ui/core/Button'
 import ProTip from './src/ProTip'
 import Link from '~/components/Link'
 
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import { Context } from './test/context'
 
 // i18next
 import {i18n} from '~/init/i18n'
-import Wrapper from '~/init/Wrapper'
+import Wrapper from '~/components/Wrapper/'
 
 
 function Copyright () {
@@ -45,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function About ({ globalStore, t, currentLanguage }) {
+function About ({ globalStore, t, currentLanguage, widthUp, widthDown, widthOnly, widthBetween }) {
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
@@ -61,6 +64,17 @@ function About ({ globalStore, t, currentLanguage }) {
         <Typography variant='h4' component='h1' gutterBottom>
           Next.js {currentLanguage}
         </Typography>
+
+				<p>
+					<span>widthUp: {widthUp('sm').toString()}</span>
+					<br />
+					<span>widthDown: {widthDown('sm').toString()}</span>
+					<br />
+					<span>widthOnly: {widthOnly('sm').toString()}</span>
+					<br />
+					<span>widthBetween: {widthBetween('sm','md').toString()}</span>
+
+				</p>
 
         <Button variant='contained' color='primary' onClick={() => {
           globalStore.updateCounter()
