@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function About ({ globalStore, t, currentLanguage, widthUp, widthDown, widthOnly, widthBetween }) {
+function About ({ globalStore, t, width, currentLanguage }) {
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
@@ -66,14 +66,13 @@ function About ({ globalStore, t, currentLanguage, widthUp, widthDown, widthOnly
         </Typography>
 
 				<p>
-					<span>widthUp: {widthUp('sm').toString()}</span>
+					<span>widthUp: {width.up('sm').toString()}</span>
 					<br />
-					<span>widthDown: {widthDown('sm').toString()}</span>
+					<span>widthDown: {width.down('sm').toString()}</span>
 					<br />
-					<span>widthOnly: {widthOnly('sm').toString()}</span>
+					<span>widthOnly: {width.only('sm').toString()}</span>
 					<br />
-					<span>widthBetween: {widthBetween('sm','md').toString()}</span>
-
+					<span>widthBetween: {width.between('sm','md').toString()}</span>
 				</p>
 
         <Button variant='contained' color='primary' onClick={() => {

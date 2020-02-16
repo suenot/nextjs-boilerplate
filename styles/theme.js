@@ -28,6 +28,11 @@ const theme = createMuiTheme({
     type: 'dark' // Switching the dark mode on is a single property value change.
   },
 
+  // withWidth component ⚛️
+  MuiWithWidth: {
+    initialWidth: 'lg',
+  },
+
   typography: {
     fontFamily: 'KapserksySans-Light, Helvetica, Arial, sans-serif',
     h1: {

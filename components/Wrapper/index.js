@@ -11,25 +11,28 @@ import { inject, observer } from 'mobx-react'
 function Wrapper(props) {
 
   props.getInitialProps = async ({ req }) => {
-    return {
-      ...props.getInitialProps,
+    return { ...props.getInitialProps,
       namespacesRequired: ['common', 'test'],
       currentLanguage: req ? req.language : i18n.language,
     };
   };
 
-	props.defaultProps = {
+	props.defaultProps = { ...props.defaultProps,
 
 		// Material dynamic breakpoints...
-		widthUp: (size) => useMediaQuery(useTheme().breakpoints.up(size)),
-		widthDown: (size) => useMediaQuery(useTheme().breakpoints.down(size)),
-		widthOnly: (size) => useMediaQuery(useTheme().breakpoints.only(size)),
-		widthBetween: (a,b) => useMediaQuery(useTheme().breakpoints.between(a,b)),
-		
+		width: new class {
+			constructor() {
+				// this.theme = this.up()
+			}
+			up(size) { return useMediaQuery(useTheme().breakpoints.up(size)) }
+			down(size) { return useMediaQuery(useTheme().breakpoints.down(size)) }
+			only(size) { return useMediaQuery(useTheme().breakpoints.only(size)) }
+			between(a,b) { return useMediaQuery(useTheme().breakpoints.between(a,b)) }
+		},
+
 	}
 
-  props.propTypes = {
-    ...props.propTypes,
+  props.propTypes = { ...props.propTypes,
     t: PropTypes.func.isRequired
   };
 
