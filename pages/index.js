@@ -48,10 +48,20 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function About ({ globalStore, t, width, currentLanguage }) {
+function About ({ globalStore, t, width, currentLanguage, colors }) {
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
+
+	// console.warn('colors',colors('hsl(100, 50%, 50%)').lighten(.3));
+	const c = colors('rgb(100, 100, 100)').lighten(.3)
+	const d = colors('rgb(100, 100, 100)').darken(.3)
+	const e = colors('rgb(255,255,255)').inverse()
+	const b = colors(c).opacity(.4)
+	// console.warn('c', c);
+	// console.warn('d', d);
+	console.warn('e', e);
+	// console.warn('b', b);
 
   return (
     <Container maxWidth='sm'>

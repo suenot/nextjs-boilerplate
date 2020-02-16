@@ -12,6 +12,7 @@
   "dependencies": {
     "@material-ui/core": "latest",
     "clsx": "latest",
+    "color": "^3.1.2",
     "express": "^4.16.4",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.7",

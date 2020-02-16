@@ -7,6 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { i18n, withTranslation } from '~/init/i18n';
 import { inject, observer } from 'mobx-react'
 
+import {Colors} from './colors'
 
 function Wrapper(props) {
 
@@ -29,6 +30,7 @@ function Wrapper(props) {
 			only(size) { return useMediaQuery(useTheme().breakpoints.only(size)) }
 			between(a,b) { return useMediaQuery(useTheme().breakpoints.between(a,b)) }
 		},
+		colors: (val) => new Colors(val),
 
 	}
 
