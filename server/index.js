@@ -8,9 +8,11 @@ const next = require('next')
 const mobxReact = require('mobx-react')
 const nextI18NextMiddleware = require('next-i18next/middleware').default;
 const nextI18Next= require('./i18n');
+const routes = require('./routes')
 
 const app = next({ dev })
-const handle = app.getRequestHandler()
+// const handle = app.getRequestHandler()
+const handle = routes.getRequestHandler(app)
 
 app.prepare()
   .then(async () => {

@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react'
 import PropTypes from 'prop-types';
 
 
+// material
 import { makeStyles } from '@material-ui/core/styles';
-
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -12,12 +12,11 @@ import Button from '@material-ui/core/Button'
 import ProTip from './src/ProTip'
 import Link from '~/components/Link'
 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+// env
 import { Context } from '~/context/'
-import Wrapper from '~/components/Wrapper/'
 
+// components
+import Wrapper from '~/components/Wrapper/'
 import NavBar from './components/NavBar/'
 
 function Copyright () {
@@ -64,7 +63,6 @@ function About (props) {
 
 	sys.print('Hello!!!')
 	sys.sleep(100)
-
 
   return (
 		<div>

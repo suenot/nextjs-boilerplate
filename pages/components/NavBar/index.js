@@ -27,6 +27,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Zoom from '@material-ui/core/Zoom';
 
+// components
+import LangMenu from './LangMenu'
+
+
 function HideOnScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -287,6 +291,9 @@ export default function PrimarySearchAppBar(props) {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
+							
+							<LangMenu />
+
               <IconButton
                 edge="end"
                 aria-label="account of current user"
@@ -309,6 +316,7 @@ export default function PrimarySearchAppBar(props) {
                 <MoreIcon />
               </IconButton>
             </div>
+
           </Toolbar>
         </AppBar>
       </HideOnScroll>
