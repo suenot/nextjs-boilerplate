@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useTheme } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-
 import { i18n, withTranslation } from '~/server/i18n';
 import { inject, observer } from 'mobx-react'
 import {getNodeEnv} from '~/server/env'
 
 import {Colors} from './colors'
-import {Sys} from './sys'
+import {Sys, Media} from './helpers'
 
 function Wrapper(props) {
 
@@ -28,17 +25,7 @@ function Wrapper(props) {
 			...props.defaultProps,
 			env,
 
-			// Material dynamic breakpoints...
-			width: new class {
-				constructor() {
-					// this.theme = this.up()
-				}
-				up(size) { return useMediaQuery(useTheme().breakpoints.up(size)) }
-				down(size) { return useMediaQuery(useTheme().breakpoints.down(size)) }
-				only(size) { return useMediaQuery(useTheme().breakpoints.only(size)) }
-				between(a,b) { return useMediaQuery(useTheme().breakpoints.between(a,b)) }
-			},
-
+			width: new Media(),
 			colors: (val) => new Colors(val),
 			sys: new Sys({isProd, isDev}),
 

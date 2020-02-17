@@ -1,4 +1,20 @@
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+
+// Material dynamic breakpoints...
+export class Media {
+  constructor() {
+    // this.theme = this.up()
+  }
+  up(size) { return useMediaQuery(useTheme().breakpoints.up(size)) }
+  down(size) { return useMediaQuery(useTheme().breakpoints.down(size)) }
+  only(size) { return useMediaQuery(useTheme().breakpoints.only(size)) }
+  between(a,b) { return useMediaQuery(useTheme().breakpoints.between(a,b)) }
+}
+
+
+// Helpers functions
 export class Sys {
   constructor({isDev, isProd}) {
     this.isDev = isDev
