@@ -3,6 +3,9 @@ import React from 'react'
 
 
 export function contextInit(this_) {
+
+	// console.warn(this_);
+
 	return {
 		removeTodo: () => {
 			return 'removeTodo'

@@ -1,31 +1,28 @@
-import React from 'react';
+import React, {useEffect, setState} from 'react';
+
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import LanguageIcon from '@material-ui/icons/Language';
 
-const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
-];
+
+import L, {Link} from '~/server/routes'
+import { i18n } from '~/server/i18n';
+
+
+import {languages} from '~/server/configs/languages';
 
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+
   const open = Boolean(anchorEl);
+	const query = L.Router.router ? L.Router.router.query : false
+
+	useEffect(() => {
+
+	})
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -34,6 +31,26 @@ export default function LongMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+	const changeLanguage = async (lang) => {
+		handleClose()
+
+		console.warn(query);
+
+		let route = L.Router.router.route.substr(1)
+		if(!route) route = 'index'
+
+		// i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
+
+		await i18n.changeLanguage(lang)
+		let q = query
+
+		delete q.lng
+		delete q.subpath
+
+		L.Router.pushRoute(route, {...q, lang})
+	}
+
 
   return (
     <div>
@@ -58,9 +75,9 @@ export default function LongMenu() {
           },
         }}
       >
-        {options.map(option => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-            {option}
+        {languages.map((item, index) => (
+          <MenuItem key={index} selected={item.value === query.lang} onClick={async() => await changeLanguage(item.value)}>
+            {item.label}
           </MenuItem>
         ))}
       </Menu>

@@ -45,9 +45,10 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+
 function About (props) {
 
-	const { globalStore, t, width, currentLanguage, changeLanguage, colors, env, sys } = props
+	const { globalStore, t, width, changeLanguage, colors, env, sys, query, router } = props
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
@@ -61,8 +62,12 @@ function About (props) {
 	// console.warn('e', e);
 	// console.warn('b', b);
 
-	sys.print('Hello!!!')
-	sys.sleep(100)
+	// sys.print('Hello!!!')
+	// sys.sleep(100)
+
+	// console.warn('***');
+	// console.warn('query',query);
+	// console.warn('router',router);
 
   return (
 		<div>
@@ -85,7 +90,7 @@ function About (props) {
 
 		      <Box my={4}>
 		        <Typography variant='h4' component='h1' gutterBottom>
-		          Next.js {currentLanguage}
+		          Next.js {query.lang}
 		        </Typography>
 
 						<div>
@@ -117,7 +122,9 @@ function About (props) {
 
 					<Button
 						variant='contained' color='primary'
-						onClick={ () => changeLanguage() }
+						onClick={() => {
+							alert('Use menu')
+						} }
 					>
 						{ t('change-locale') }
 					</Button>
@@ -134,7 +141,7 @@ function About (props) {
   )
 }
 
-// About.getInitialProps = async ({ req }) => {
+// About.getInitialProps = ({ req }) => {
 //   return {
 //     namespacesRequired: ['common', 'test'],
 //     currentLanguage: req ? req.language : i18n.language

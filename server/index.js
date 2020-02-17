@@ -23,11 +23,14 @@ app.prepare()
 
     // use i18next...
     await nextI18Next.initPromise;
-    server.use(nextI18NextMiddleware(nextI18Next));
+    await server.use(nextI18NextMiddleware(nextI18Next));
+
     server.use(express.json());
 
     // use next.js
     server.get('*', (req, res) => handle(req, res))
+
+
 
     await server.listen(port, (err) => {
       if (err) throw err

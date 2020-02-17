@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
 
 import { withRouter } from 'next/router'
@@ -9,46 +9,53 @@ import {getNodeEnv} from '~/server/env'
 
 import {Colors} from './colors'
 import {Sys, Media} from './helpers'
+// import L, {Link} from '~/server/routes'
 
-function Wrapper(props) {
 
-	// props = withRouter(props)
-
-  props.getInitialProps = async ({ req, query, pathname, isVirtualCall }) => {
-
-		console.warn('.....');
-		console.warn('query:',query);
-		// console.warn(req.query);
-
-    return { ...props.getInitialProps,
-      namespacesRequired: ['common', 'test'],
-      currentLanguage: req ? req.language : i18n.language,
-			// query: req.query,
-    };
-  };
+const Wrapper = WrappedComponent => {
 
 	const env = getNodeEnv()
 	const {isProd, isDev} = env
 
-	props.defaultProps = { ...props.defaultProps,
-		env,
-		width: new Media(),
-		colors: (val) => new Colors(val),
-		sys: new Sys({isProd, isDev}),
-		changeLanguage: () => i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
-	}
+  class Wrapper extends React.Component {
 
-  props.propTypes = { ...props.propTypes,
-    t: PropTypes.func.isRequired
-  };
+		static async getInitialProps ({ req, query, pathname, isVirtualCall }) {
+	    return {
+	      namespacesRequired: ['common'],
+				query,
+	    };
+	  };
 
+		static defaultProps = {
+			env,
+			width: new Media(),
+			colors: (val) => new Colors(val),
+			sys: new Sys({isProd, isDev}),
+		}
 
-  props = inject('globalStore')(observer(props))
-  props = withTranslation('common')(props)
+	  static propTypes = {
+	    t: PropTypes.func.isRequired
+	  };
 
+		componentDidMount() {
+			const {query} = this.props
+			i18n.changeLanguage(query.lang)
+		}
 
-  return props;
-}
+    render() {
+      return (
+				<WrappedComponent
+					{...this.props}
+				/> )
+    }
+  }
 
+	let obj = Wrapper
+	obj = inject('globalStore')(observer(obj))
+	obj = withTranslation('common')(obj)
+	obj = withRouter(obj)
+
+  return obj;
+};
 
 export default Wrapper
