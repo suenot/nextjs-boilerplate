@@ -1,5 +1,9 @@
+// Material
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+// Libs
+import {deviceDetect, isBrowser, isMobile} from 'react-device-detect';
 
 
 // Material dynamic breakpoints...
@@ -19,6 +23,11 @@ export class Sys {
   constructor({isDev, isProd}) {
     this.isDev = isDev
     this.isProd = isProd
+
+    this.browserLang = this.navigator()
+    this.device = {...deviceDetect(), browserLang: this.browserLang}
+    this.isMobile = isMobile
+    this.isBrowser = isBrowser
   }
 
   async sleep(ms=300) {
@@ -58,6 +67,11 @@ export class Sys {
 		}
 
 		return response;
+	}
+
+  navigator() {
+		const lang = typeof navigator !== 'undefined' ? (navigator.language || navigator.userLanguage) : false
+		return lang ? lang.substr(0,2) : ''
 	}
 
 }

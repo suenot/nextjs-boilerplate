@@ -12,7 +12,7 @@ import theme from '../styles/theme'
 import { Provider } from 'mobx-react'
 import globalStore, { fetchInitialStoreState } from '../stores/global'
 
-import { Context } from './test/context'
+import { Context, contextInit } from '~/context/'
 
 class MyApp extends App {
   constructor (props) {
@@ -50,24 +50,13 @@ class MyApp extends App {
   render () {
     const { Component, pageProps } = this.props
 
-    const removeTodo = () => {
-      return 'removeTodo'
-    }
-
-    const toggleTodo = () => {
-      return 'toggleTodo'
-    }
-
     return (
       <React.Fragment>
         <Head>
           <title>My page</title>
           <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
         </Head>
-				<Context.Provider value={{
-					removeTodo,
-					toggleTodo
-				}}>
+				<Context.Provider value={{...contextInit(this)}}>
 					<Provider globalStore={this.state.globalStore}>
 						<ThemeProvider theme={theme}>
 							{/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

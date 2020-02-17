@@ -17,22 +17,16 @@ function Wrapper(props) {
     };
   };
 
-	function defaultProps() {
-		const env = getNodeEnv()
-		const {isProd, isDev} = env
+	const env = getNodeEnv()
+	const {isProd, isDev} = env
 
-		return {
-			...props.defaultProps,
-			env,
-
-			width: new Media(),
-			colors: (val) => new Colors(val),
-			sys: new Sys({isProd, isDev}),
-
-		}
+	props.defaultProps = { ...props.defaultProps,
+		env,
+		width: new Media(),
+		colors: (val) => new Colors(val),
+		sys: new Sys({isProd, isDev}),
+		changeLanguage: () => i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
 	}
-
-	props.defaultProps = defaultProps()
 
   props.propTypes = { ...props.propTypes,
     t: PropTypes.func.isRequired

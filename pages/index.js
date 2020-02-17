@@ -15,11 +15,7 @@ import Link from '~/components/Link'
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
-import { Context } from './test/context'
-
-
-// i18next
-import {i18n} from '~/server/i18n'
+import { Context } from '~/context/'
 import Wrapper from '~/components/Wrapper/'
 
 
@@ -51,7 +47,7 @@ const useStyles = makeStyles(theme => ({
 
 function About (props) {
 
-	const { globalStore, t, width, currentLanguage, colors, env, sys } = props
+	const { globalStore, t, width, currentLanguage, changeLanguage, colors, env, sys } = props
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
@@ -110,9 +106,7 @@ function About (props) {
 
 				<Button
 					variant='contained' color='primary'
-					onClick={ () =>
-						i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
-					}
+					onClick={ () => changeLanguage() }
 				>
 					{ t('change-locale') }
 				</Button>

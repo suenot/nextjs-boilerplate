@@ -21,7 +21,7 @@ export class Colors {
       const res = this.color.isLight() ? '#000000' : '#FFFFFF'
       this.color = C(res)
     } catch(err) {
-      console.warn('colors.inverse error:', err);
+      console.error('colors.inverse error:', err);
     }
 
     return this.color.rgb().string()
@@ -29,6 +29,15 @@ export class Colors {
   negate() {
     return this.color.negate().rgb().string();
   }
+  // full(opacity=1) {
+  //   try {
+  //     this.color = `rgba(${C(this.color).rgb().array().slice(0, 3).join(',')}, ${opacity})`
+  //   } catch(err) {
+  //     console.error('colors.inverse error:', err);
+  //   }
+  //
+  //   return this.color;
+  // }
 }
 
 // https://www.npmjs.com/package/color

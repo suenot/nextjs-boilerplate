@@ -1,5 +1,4 @@
 // const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
-const { serverRuntimeConfig, publicRuntimeConfig } = require('./next.runtimeConfig');
 
 let nextConfig = {
 
@@ -42,7 +41,12 @@ let nextConfig = {
 module.exports = (phase, { defaultConfig }) => {
   return {
     ...nextConfig,
-    serverRuntimeConfig,
-    publicRuntimeConfig,
+
+    serverRuntimeConfig: {},
+    publicRuntimeConfig: {
+      GROUP_NAME: process.env.GROUP_NAME,
+      NODE_ENV: process.env.NODE_ENV, // XXX Used in utils/env
+    },
+
   }
 }

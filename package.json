@@ -21,6 +21,7 @@
     "next-i18next": "^4.2.0",
     "prop-types": "latest",
     "react": "latest",
+    "react-device-detect": "^1.11.14",
     "react-dom": "latest"
   },
   "resolutions": {},
