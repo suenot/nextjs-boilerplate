@@ -18,6 +18,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { Context } from '~/context/'
 import Wrapper from '~/components/Wrapper/'
 
+import NavBar from './components/NavBar/'
 
 function Copyright () {
 
@@ -66,58 +67,72 @@ function About (props) {
 
 
   return (
-    <Container maxWidth='sm'>
-
-			<div className={classes.demo}>
-				Styled container
-			</div>
-
-      <Box my={4}>
-        <Typography variant='h4' component='h1' gutterBottom>
-          Next.js {currentLanguage}
-        </Typography>
-
+		<div>
+			<NavBar>
 				<div>
-					Config {env.RESTURL_SPEAKERS}
-				</div>
+					<div className={classes.demo}>
+						Styled container
+					</div>
 
-				<p>
-					<span>widthUp: {width.up('sm').toString()}</span>
-					<br />
-					<span>widthDown: {width.down('sm').toString()}</span>
-					<br />
-					<span>widthOnly: {width.only('sm').toString()}</span>
-					<br />
-					<span>widthBetween: {width.between('sm','md').toString()}</span>
-				</p>
+					<Box my={2}>
+	          {[...new Array(12)]
+	            .map(
+	              () => `Cras mattis consectetur purus sit amet fermentum.
+	Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+	Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+	Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
+	            )
+	            .join('\n')}
+	        </Box>
 
-        <Button variant='contained' color='primary' onClick={() => {
-          globalStore.updateCounter()
-        }}>
-          Mobx {globalStore.counter}
-        </Button>
+		      <Box my={4}>
+		        <Typography variant='h4' component='h1' gutterBottom>
+		          Next.js {currentLanguage}
+		        </Typography>
+
+						<div>
+							Config {env.RESTURL_SPEAKERS}
+						</div>
+
+						<p>
+							<span>widthUp: {width.up('sm').toString()}</span>
+							<br />
+							<span>widthDown: {width.down('sm').toString()}</span>
+							<br />
+							<span>widthOnly: {width.only('sm').toString()}</span>
+						<br />
+						<span>widthBetween: {width.between('sm','md').toString()}</span>
+					</p>
+
+	        <Button variant='contained' color='primary' onClick={() => {
+	          globalStore.updateCounter()
+	        }}>
+	          Mobx {globalStore.counter}
+	        </Button>
 
 
-	      <Button variant='contained' color='primary' onClick={() => {
-	        const s = removeTodo()
+		      <Button variant='contained' color='primary' onClick={() => {
+		        const s = removeTodo()
 
-	        alert(s) // eslint-disable-line
-	      }}>removeTodo</Button>
+		        alert(s) // eslint-disable-line
+		      }}>removeTodo</Button>
 
-				<Button
-					variant='contained' color='primary'
-					onClick={ () => changeLanguage() }
-				>
-					{ t('change-locale') }
-				</Button>
+					<Button
+						variant='contained' color='primary'
+						onClick={ () => changeLanguage() }
+					>
+						{ t('change-locale') }
+					</Button>
 
-        <Button variant='contained' color='primary' component={Link} naked href='/'>
-          Go to the main page
-        </Button>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+	        <Button variant='contained' color='primary' component={Link} naked href='/'>
+	          Go to the main page
+	        </Button>
+	        <ProTip />
+	        <Copyright />
+	      </Box>
+	    </div>
+		</NavBar>
+		</div>
   )
 }
 
