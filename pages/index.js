@@ -16,7 +16,7 @@ import Link from '~/components/Link'
 import { Context } from '~/context/'
 
 // components
-import Wrapper from '~/components/Wrapper/'
+import Wrapper, {Mobx} from '~/components/Wrapper/'
 import NavBar from './components/NavBar/'
 
 function Copyright () {
@@ -152,5 +152,5 @@ function About (props) {
 //   t: PropTypes.func.isRequired
 // };
 
-
+// export default Wrapper(Mobx(About))
 export default Wrapper(About)

@@ -9,10 +9,8 @@ import {getNodeEnv} from '~/server/env'
 
 import {Colors} from './colors'
 import {Sys, Media} from './helpers'
-// import L, {Link} from '~/server/routes'
 
-
-const Wrapper = WrappedComponent => {
+const WrapperComponent = WrappedComponent => {
 
 	const env = getNodeEnv()
 	const {isProd, isDev} = env
@@ -51,11 +49,15 @@ const Wrapper = WrappedComponent => {
   }
 
 	let obj = Wrapper
-	obj = inject('globalStore')(observer(obj))
 	obj = withTranslation('common')(obj)
 	obj = withRouter(obj)
 
   return obj;
 };
 
-export default Wrapper
+
+
+export default function (obj) {
+	obj = inject('globalStore')(observer(obj))
+	return WrapperComponent(obj);
+}
