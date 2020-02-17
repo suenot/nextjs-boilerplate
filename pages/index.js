@@ -17,8 +17,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import { Context } from './test/context'
 
+
 // i18next
-import {i18n} from '~/init/i18n'
+import {i18n} from '~/server/i18n'
 import Wrapper from '~/components/Wrapper/'
 
 
@@ -48,20 +49,25 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function About ({ globalStore, t, width, currentLanguage, colors }) {
+function About (props) {
+
+	const { globalStore, t, width, currentLanguage, colors, env, sys } = props
 
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
 
-	// console.warn('colors',colors('hsl(100, 50%, 50%)').lighten(.3));
 	const c = colors('rgb(100, 100, 100)').lighten(.3)
 	const d = colors('rgb(100, 100, 100)').darken(.3)
 	const e = colors('rgb(255,255,255)').inverse()
 	const b = colors(c).opacity(.4)
 	// console.warn('c', c);
 	// console.warn('d', d);
-	console.warn('e', e);
+	// console.warn('e', e);
 	// console.warn('b', b);
+
+	sys.print('Hello!!!')
+	sys.sleep(100)
+
 
   return (
     <Container maxWidth='sm'>
@@ -74,6 +80,10 @@ function About ({ globalStore, t, width, currentLanguage, colors }) {
         <Typography variant='h4' component='h1' gutterBottom>
           Next.js {currentLanguage}
         </Typography>
+
+				<div>
+					Config {env.RESTURL_SPEAKERS}
+				</div>
 
 				<p>
 					<span>widthUp: {width.up('sm').toString()}</span>

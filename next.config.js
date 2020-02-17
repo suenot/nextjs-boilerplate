@@ -1,3 +1,5 @@
+// const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
+const { serverRuntimeConfig, publicRuntimeConfig } = require('./next.runtimeConfig');
 
 let nextConfig = {
 
@@ -34,4 +36,13 @@ let nextConfig = {
   }
 }
 
-module.exports = nextConfig
+
+
+// This uses phases as outlined here: https://nextjs.org/docs/#custom-configuration
+module.exports = (phase, { defaultConfig }) => {
+  return {
+    ...nextConfig,
+    serverRuntimeConfig,
+    publicRuntimeConfig,
+  }
+}

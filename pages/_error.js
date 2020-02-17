@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import getNextI18NextInstance from '~/init/i18n';
+import getNextI18NextInstance from '~/server/i18n';
 
 const { useTranslation } = getNextI18NextInstance;
 

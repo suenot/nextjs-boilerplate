@@ -3,10 +3,10 @@
   "version": "4.0.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "node server/index.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "startWind": "npm run build && cross-env NODE_ENV=production node server.js",
+    "start": "NODE_ENV=production node server/index.js",
+    "startWind": "npm run build && cross-env NODE_ENV=production node server/index.js",
     "lint": "standard --fix"
   },
   "dependencies": {

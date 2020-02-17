@@ -17,16 +17,17 @@ export class Colors {
     return color;
   }
   inverse() {
+    try {
+      const res = this.color.isLight() ? '#000000' : '#FFFFFF'
+      this.color = C(res)
+    } catch(err) {
+      console.warn('colors.inverse error:', err);
+    }
+
+    return this.color.rgb().string()
+  }
+  negate() {
     return this.color.negate().rgb().string();
-    // try {
-    //   const res = this.color.isLight() ? '#000000' : '#FFFFFF'
-    //   const color = C(res).rgb().string()
-    //   return color
-    // } catch(err) {
-    //   console.warn('colors.inverse error:', err);
-    // }
-    //
-    // return false
   }
 }
 
