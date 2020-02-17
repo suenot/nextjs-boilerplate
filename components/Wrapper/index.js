@@ -10,6 +10,8 @@ import {getNodeEnv} from '~/server/env'
 import {Colors} from './colors'
 import {Sys, Media} from './helpers'
 
+import Protected from '../Protected'
+
 const WrapperComponent = WrappedComponent => {
 
 	const env = getNodeEnv()
@@ -44,7 +46,8 @@ const WrapperComponent = WrappedComponent => {
       return (
 				<WrappedComponent
 					{...this.props}
-				/> )
+				/>
+			)
     }
   }
 
@@ -57,7 +60,13 @@ const WrapperComponent = WrappedComponent => {
 
 
 
-export default function (obj) {
+export default function (obj, options) {
+	const {is_protected} = options
+
 	obj = inject('globalStore')(observer(obj))
-	return WrapperComponent(obj);
+	obj = WrapperComponent(obj)
+
+	if(is_protected) return Protected(obj)
+	return obj;
+
 }

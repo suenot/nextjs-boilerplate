@@ -291,7 +291,7 @@ export default function PrimarySearchAppBar(props) {
                   <NotificationsIcon />
                 </Badge>
               </IconButton>
-							
+
 							<LangMenu />
 
               <IconButton
@@ -315,6 +315,7 @@ export default function PrimarySearchAppBar(props) {
               >
                 <MoreIcon />
               </IconButton>
+							<LangMenu />
             </div>
 
           </Toolbar>
