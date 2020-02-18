@@ -9,7 +9,6 @@ const mobxReact = require('mobx-react')
 const nextI18NextMiddleware = require('next-i18next/middleware').default;
 const nextI18Next= require('./i18n');
 const routes = require('./routes')
-const createLocaleMiddleware = require('express-locale');
 
 const {langCodes, defaultLang} = require('./configs/languages')
 
@@ -29,7 +28,7 @@ app.prepare()
     // use i18next...
     await nextI18Next.initPromise;
 
-    // server.use(createLocaleMiddleware())
+
 
     async function hack(init) {
       await server.use(nextI18NextMiddleware(nextI18Next));
@@ -39,7 +38,12 @@ app.prepare()
 
     // use next.js
     await hack(
-      server.get('*', (req, res) => handle(req, res))
+      server.get('*', (req, res) => {
+
+        getBrowserLang(req, res)
+
+        handle(req, res)
+      })
     )
 
 
@@ -57,38 +61,31 @@ app.prepare()
   })
 
 
-// function getBrowserLang(req) {
-//
-//   // const browserLang = req.locale.language
-//   // console.warn('browserLang',browserLang);
-//   if(req.query.lang) {
-//     console.warn('----');
-//     console.warn(req.query.lang);
-//   }
-//
-//   let lang = req.acceptsLanguages(langCodes)
-//       lang = lang ? lang : defaultLang
-//
-//   // console.log('***********')
-//   // console.log(lang)
-//
-//   return lang
-// }
+function getBrowserLang(req, res) {
 
-// function getBrowserLang(req) {
-//
-//   const accept = req.acceptsLanguages(langCodes)
-//   // if(accept) ...
-//
-//   const browserLang = req.locale.language
-//   console.warn('...lng...',req.query.lng);
-//   // console.warn(req.locale);
-//   // console.warn(req.ip);
-//
-//   if(langCodes.includes(browserLang)) {
-//     return browserLang;
-//   } else {
-//      return defaultLang;
-//   }
-//
-// }
+  const browserLang = req.headers['accept-language'].split(',')[3].split(';')[0]
+  const pathname = req._parsedUrl.pathname
+  let patharr = pathname.split('/')
+
+  if(pathname == '/') {
+    const redirectLang = langCodes.includes(browserLang) ? browserLang : defaultLang
+
+    res.redirect(`/${redirectLang}`);
+  }
+
+  if(patharr.length == 2 && patharr[1].length == 2) {
+
+    const pathLang = patharr[1]
+    const redirectLang = langCodes.includes(browserLang) ? browserLang : defaultLang
+
+    if(!langCodes.includes(pathLang)) {
+
+      patharr[1] = redirectLang
+      patharr = patharr.join('/')
+
+      res.redirect(patharr);
+
+    }
+
+  }
+}
