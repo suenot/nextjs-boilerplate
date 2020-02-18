@@ -16,9 +16,7 @@ export default function withAuth(AuthComponent) {
   return class Authenticated extends Component {
     static async getInitialProps(ctx) {
       // Check if Page has a `getInitialProps`; if so, call it.
-      const pageProps =
-        AuthComponent.getInitialProps &&
-        (await AuthComponent.getInitialProps(ctx))
+      const pageProps = AuthComponent.getInitialProps && (await AuthComponent.getInitialProps(ctx))
       // Return props.
       return { ...pageProps }
     }

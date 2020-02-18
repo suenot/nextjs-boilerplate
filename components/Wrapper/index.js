@@ -11,6 +11,7 @@ import {Colors} from './colors'
 import {Sys, Media} from './helpers'
 
 import Protected from '../Protected'
+import NavBar from '../NavBar/'
 
 const WrapperComponent = WrappedComponent => {
 
@@ -28,7 +29,7 @@ const WrapperComponent = WrappedComponent => {
 
 		static defaultProps = {
 			env,
-			width: new Media(),
+			width: Media,
 			colors: (val) => new Colors(val),
 			sys: new Sys({isProd, isDev}),
 		}
@@ -61,12 +62,13 @@ const WrapperComponent = WrappedComponent => {
 
 
 export default function (obj, options) {
-	const {is_protected} = options
+	const {is_protected, navbar} = options
 
 	obj = inject('globalStore')(observer(obj))
 	obj = WrapperComponent(obj)
 
-	if(is_protected) return Protected(obj)
+	if(navbar) obj = NavBar(obj)
+	// if(is_protected) obj = Protected(obj)
 	return obj;
 
 }

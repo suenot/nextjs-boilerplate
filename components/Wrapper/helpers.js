@@ -7,7 +7,7 @@ import {deviceDetect, isBrowser, isMobile} from 'react-device-detect';
 
 
 // Material dynamic breakpoints...
-export class Media {
+export class Media_ {
   constructor() {
     // this.theme = this.up()
   }
@@ -16,6 +16,7 @@ export class Media {
   only(size) { return useMediaQuery(useTheme().breakpoints.only(size)) }
   between(a,b) { return useMediaQuery(useTheme().breakpoints.between(a,b)) }
 }
+export const Media = new Media_()
 
 
 // Helpers functions
