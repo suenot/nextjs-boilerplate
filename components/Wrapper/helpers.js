@@ -2,6 +2,9 @@
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+// components
+import L from '~/server/routes'
+
 // Libs
 import {deviceDetect, isBrowser, isMobile} from 'react-device-detect';
 
@@ -20,6 +23,18 @@ export const Media = new Media_()
 
 
 // Helpers functions
+class Get_ {
+  constructor() {
+    // this.query = L.Router.router ? L.Router.router.query : {}
+  }
+  query() {
+    return L.Router.router ? L.Router.router.query : {}
+  }
+}
+
+export const Get = new Get_()
+
+
 export class Sys {
   constructor({isDev, isProd}) {
     this.isDev = isDev
@@ -30,6 +45,7 @@ export class Sys {
     this.isMobile = isMobile
     this.isBrowser = isBrowser
   }
+
 
   async sleep(ms=300) {
     if(this.isProd) return false;

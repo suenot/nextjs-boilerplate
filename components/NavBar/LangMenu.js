@@ -11,6 +11,7 @@ import { i18n } from '~/server/i18n';
 
 
 import {languages} from '~/server/configs/languages';
+import {Get} from '~/components/Wrapper/helpers'
 
 const ITEM_HEIGHT = 48;
 
@@ -18,11 +19,8 @@ export default function LongMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const open = Boolean(anchorEl);
-	const query = L.Router.router ? L.Router.router.query : false
 
-	useEffect(() => {
-
-	})
+	const query = Get.query()
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -34,8 +32,6 @@ export default function LongMenu() {
 
 	const changeLanguage = async (lang) => {
 		handleClose()
-
-		console.warn(query);
 
 		let route = L.Router.router.route.substr(1)
 		if(!route) route = 'index'
@@ -50,7 +46,6 @@ export default function LongMenu() {
 
 		L.Router.pushRoute(route, {...q, lang})
 	}
-
 
   return (
     <div>

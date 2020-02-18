@@ -18,22 +18,6 @@ import { Context } from '~/context/'
 // components
 import Wrapper from '~/components/Wrapper/'
 
-
-function Copyright () {
-
-  return (
-    <Typography variant='body2' color='textSecondary' align='center'>
-      {'Copyright © '}
-
-      <MuiLink color='inherit' href='https://material-ui.com/'>
-        Your Website!
-      </MuiLink>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
 const useStyles = makeStyles(theme => ({
 
 	demo: {
@@ -131,7 +115,6 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
           Go to the main page
         </Button>
         <ProTip />
-        <Copyright />
       </Box>
   	</div>
   )
@@ -151,4 +134,5 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
 export default Wrapper(About, {
 	is_protected: true,
 	navbar: true,
+	footer: true,
 })

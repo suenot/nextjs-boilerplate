@@ -23,12 +23,20 @@ app.prepare()
 
     // use i18next...
     await nextI18Next.initPromise;
-    await server.use(nextI18NextMiddleware(nextI18Next));
+
 
     server.use(express.json());
 
+    async function hack(init) {
+      await server.use(nextI18NextMiddleware(nextI18Next));
+      init
+      await server.use(nextI18NextMiddleware(nextI18Next));
+    }
+
     // use next.js
-    server.get('*', (req, res) => handle(req, res))
+    await hack(
+      server.get('*', (req, res) => handle(req, res))
+    )
 
 
 

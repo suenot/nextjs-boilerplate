@@ -12,6 +12,7 @@ import {Sys, Media} from './helpers'
 
 import Protected from '../Protected'
 import NavBar from '../NavBar/'
+import Footer from './Footer/'
 
 const WrapperComponent = WrappedComponent => {
 
@@ -62,11 +63,12 @@ const WrapperComponent = WrappedComponent => {
 
 
 export default function (obj, options) {
-	const {is_protected, navbar} = options
+	const {is_protected, navbar, footer} = options
 
 	obj = inject('globalStore')(observer(obj))
 	obj = WrapperComponent(obj)
 
+	if(footer) obj = Footer(obj)
 	if(navbar) obj = NavBar(obj)
 	// if(is_protected) obj = Protected(obj)
 	return obj;
