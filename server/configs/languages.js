@@ -10,5 +10,7 @@ const languages = [
 ];
 
 module.exports = {
-  languages
+	languages,
+	langCodes: languages.map(item => item.value),
+	defaultLang: 'en',
 }

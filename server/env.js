@@ -26,6 +26,7 @@ export const getNodeEnv = () => {
 
   let response = {
     isDev, isProd,
+    projectName: 'New project',
   }
 
   // Development config...

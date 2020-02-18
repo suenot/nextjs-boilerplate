@@ -1,20 +1,23 @@
 // import React from 'react'
 // import PropTypes from 'prop-types';
 
-
 // material
 import Typography from '@material-ui/core/Typography'
 import MuiLink from '@material-ui/core/Link'
 
+// helpers
+import {getNodeEnv} from '~/server/env'
 
 function Footer () {
+
+	const env = getNodeEnv()
 
   return (
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
 
       <MuiLink color='inherit' href='https://material-ui.com/'>
-        Your Website!
+        {env.projectName}
       </MuiLink>{' '}
       {new Date().getFullYear()}
       {'.'}

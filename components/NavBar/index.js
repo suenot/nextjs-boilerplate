@@ -22,6 +22,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 // helpers
 import {Media} from '../Wrapper/helpers'
+import {getNodeEnv} from '~/server/env'
 
 // components
 import MenuToolbar from './MenuToolbar'
@@ -111,6 +112,9 @@ function PersistentDrawerLeft(props) {
 		return undefined;
 	}
 
+	const env = getNodeEnv()
+
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -135,7 +139,7 @@ function PersistentDrawerLeft(props) {
 	          </IconButton>
 
 						<Typography className={classes.title} variant="h6" noWrap>
-							Material-UI
+							{env.projectName}
 						</Typography>
 
 						<MenuToolbar />
