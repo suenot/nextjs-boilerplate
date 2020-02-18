@@ -18,16 +18,11 @@ const handle = routes.getRequestHandler(app)
 app.prepare()
   .then(async () => {
 
-    mobxReact.useStaticRendering(true)
+    await mobxReact.useStaticRendering(true)
+    await nextI18Next.initPromise;
 
     const server = express()
     server.use(express.json());
-
-
-    // use i18next...
-    await nextI18Next.initPromise;
-
-
 
     async function hack(init) {
       await server.use(nextI18NextMiddleware(nextI18Next));

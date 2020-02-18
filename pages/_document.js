@@ -9,12 +9,22 @@ export default class MyDocument extends Document {
     return (
       <html lang='en'>
         <Head>
+
+					<meta charSet="utf-8" />
+          {/* Use minimum-scale=1 to enable GPU rasterization */}
+          <meta
+            name="viewport"
+            content={
+              'user-scalable=no, initial-scale=1, ' +
+              'minimum-scale=1, maximum-scale=1, width=device-width, height=device-height'
+            }
+          />
+				
           {/* PWA primary color */}
           <meta name='theme-color' content={theme.palette.primary.main} />
-          <link
-            rel='stylesheet'
-            href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'
-          />
+          <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700&display=swap" />
+					<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
         </Head>
         <body>
           <Main />

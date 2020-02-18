@@ -27,6 +27,7 @@ export const getNodeEnv = () => {
   let response = {
     isDev, isProd,
     projectName: 'New project',
+    siteUrl: 'https://kupi.net',
   }
 
   // Development config...

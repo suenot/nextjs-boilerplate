@@ -6,32 +6,49 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Icon from '@material-ui/core/Icon';
 
-// icons...
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
+const menu1 = [
+  {
+    label: 'Inbox',
+    icon: 'mail',
+  },
+  {
+    label: 'Starred',
+    icon: 'mail',
+  },
+  {
+    label: 'Send email',
+    icon: 'mail',
+  },
+  {
+    label: 'Drafts',
+    icon: 'mail',
+  },
+]
 
 export default function LeftMenu() {
+
+  function renderMenu(arr) {
+    return (
+      <List>
+        {arr.map((item, index) => (
+          <ListItem button key={index}>
+            <ListItemIcon>
+              <Icon>{item.icon}</Icon>
+            </ListItemIcon>
+            <ListItemText primary={item.label} />
+          </ListItem>
+        ))}
+      </List>
+    )
+  }
   return (
     <div>
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {renderMenu(menu1)}
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {renderMenu(menu1)}
     </div>
   )
 }

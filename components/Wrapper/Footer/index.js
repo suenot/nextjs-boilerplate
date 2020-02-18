@@ -16,7 +16,7 @@ function Footer () {
     <Typography variant='body2' color='textSecondary' align='center'>
       {'Copyright © '}
 
-      <MuiLink color='inherit' href='https://material-ui.com/'>
+      <MuiLink color='inherit' href={env.siteUrl}>
         {env.projectName}
       </MuiLink>{' '}
       {new Date().getFullYear()}
