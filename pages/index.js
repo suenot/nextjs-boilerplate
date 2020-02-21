@@ -37,21 +37,12 @@ function About (props) {
 	const classes = useStyles()
   const { removeTodo, toggleTodo } = useContext(Context)
 
-	const c = colors('rgb(100, 100, 100)').lighten(.3)
-	const d = colors('rgb(100, 100, 100)').darken(.3)
-	const e = colors('rgb(255,255,255)').inverse()
-	const b = colors(c).opacity(.4)
-	// console.warn('c', c);
-	// console.warn('d', d);
-	// console.warn('e', e);
-	// console.warn('b', b);
-
-	// sys.print('Hello!!!')
-	// sys.sleep(100)
-
-	// console.warn('***');
-	// console.warn('query',query);
-	// console.warn('router',router);
+	const color = 'rgb(100, 100, 100)'
+	const lighten = colors(color).lighten(.3)
+	const darken = colors(color).darken(.3)
+	const inverse = colors(color).inverse()
+	const negate = colors(color).negate()
+	const opacity = colors(c).opacity(.4)
 
   return (
 		<div>
