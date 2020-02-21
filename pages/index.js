@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box'
 import MuiLink from '@material-ui/core/Link'
 import Button from '@material-ui/core/Button'
 import ProTip from './src/ProTip'
-import Link from '~/components/Link'
+import Link, {LinkClick} from '~/components/Link'
 
 // env
 import { Context } from '~/context/'
@@ -42,7 +42,7 @@ function About (props) {
 	const darken = colors(color).darken(.3)
 	const inverse = colors(color).inverse()
 	const negate = colors(color).negate()
-	const opacity = colors(c).opacity(.4)
+	const opacity = colors(color).opacity(.4)
 
   return (
 		<div>
@@ -103,8 +103,28 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
 				</Button>
 
         <Button variant='contained' color='primary' component={Link} naked href='/'>
-          Go to the main page
+          Button with Link component
         </Button>
+
+				<Button variant='contained' color='primary'
+					onClick={() => {
+
+						LinkClick({
+							route: 'index',
+							params: {
+								something: 'yex'
+							}
+						})
+
+					}}
+					>
+          Button with onClick
+        </Button>
+
+				<Link href='/' color='secondary'>
+          Link component
+        </Link>
+
         <ProTip />
       </Box>
   	</div>

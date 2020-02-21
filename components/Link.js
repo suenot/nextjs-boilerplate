@@ -2,9 +2,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import clsx from 'clsx'
-import { useRouter } from 'next/router'
+import Router, { useRouter } from 'next/router'
 import NextLink from 'next/link'
 import MuiLink from '@material-ui/core/Link'
+
+import {getNodeEnv} from '~/server/env'
 
 const NextComposed = React.forwardRef(function NextComposed (props, ref) {
   const { as, href, prefetch, ...other } = props
@@ -25,8 +27,9 @@ NextComposed.propTypes = {
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function Link (props) {
+
   const {
-    href,
+		href,
     activeClassName = 'active',
     className: classNameProps,
     innerRef,
@@ -35,7 +38,9 @@ function Link (props) {
   } = props
 
   const router = useRouter()
-  const pathname = typeof href === 'string' ? href : href.pathname
+	const pathname = typeof href === 'string' ? href : href.pathname
+
+	// query
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === pathname && activeClassName
   })
@@ -60,4 +65,28 @@ Link.propTypes = {
   prefetch: PropTypes.bool
 }
 
-export default React.forwardRef((props, ref) => <Link {...props} innerRef={ref} />)
+export default React.forwardRef((props, ref) => {
+
+	const router = useRouter()
+	const {query} = router
+
+	const props_ = {
+		...props,
+		href: `/${query.lang}${props.href}`
+	}
+
+	return (
+		<Link {...props_} innerRef={ref} />
+	)
+})
+
+
+
+export function LinkClick({route, params}) {
+	const lang = document.location.pathname.split('/')[1]
+
+	Router.pushRoute(route, {
+		...params,
+		lang,
+	})
+}
